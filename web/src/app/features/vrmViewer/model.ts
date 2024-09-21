@@ -1,11 +1,38 @@
 import * as THREE from "three";
-import { VRM, VRMLoaderPlugin, VRMUtils } from "@pixiv/three-vrm";
+import { VRM, VRMLoaderPlugin, VRMUtils, VRMExpressionPresetName } from "@pixiv/three-vrm";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-//import { VRMAnimation } from "../../lib/VRMAnimation/VRMAnimation";
+import { VRMAnimation } from "../../lib/VRMAnimation/VRMAnimation";
 import { VRMLookAtSmootherLoaderPlugin } from "../../lib/VRMLookAtSmootherLoaderPlugin/VRMLookAtSmootherLoaderPlugin";
 import { LipSync } from "../lipSync/lipSync";
 import { EmoteController } from "../emoteController/emoteController";
-//import { Screenplay } from "../messages/messages";
+
+const talkStyles = [
+  "talk",
+  "happy",
+  "sad",
+  "angry",
+  "fear",
+  "surprised",
+] as const;
+export type TalkStyle = (typeof talkStyles)[number];
+
+export type Talk = {
+  style: TalkStyle;
+  speakerX: number;
+  speakerY: number;
+  message: string;
+};
+
+const emotions = ["neutral", "happy", "angry", "sad", "relaxed"] as const;
+type EmotionType = (typeof emotions)[number] & VRMExpressionPresetName;
+
+/**
+ * 発話文と音声の感情と、モデルの感情表現がセットになった物
+ */
+export type Screenplay = {
+  expression: EmotionType;
+  talk: Talk;
+};
 
 /**
  * 3Dキャラクターを管理するクラス
@@ -33,7 +60,6 @@ export class Model {
     );
 
     const gltf = await loader.loadAsync(url);
-    console.log(gltf)
 
     const vrm = (this.vrm = gltf.userData.vrm);
     vrm.scene.name = "VRMRoot";
@@ -56,7 +82,6 @@ export class Model {
    *
    * https://github.com/vrm-c/vrm-specification/blob/master/specification/VRMC_vrm_animation-1.0/README.ja.md
    */
-  /*
   public async loadAnimation(vrmAnimation: VRMAnimation): Promise<void> {
     const { vrm, mixer } = this;
     if (vrm == null || mixer == null) {
@@ -67,12 +92,10 @@ export class Model {
     const action = mixer.clipAction(clip);
     action.play();
   }
-  */
 
   /**
    * 音声を再生し、リップシンクを行う
    */
-  /*
   public async speak(buffer: ArrayBuffer, screenplay: Screenplay) {
     this.emoteController?.playEmotion(screenplay.expression);
     await new Promise((resolve) => {
@@ -81,7 +104,6 @@ export class Model {
       });
     });
   }
-  */
 
   public update(delta: number): void {
     if (this._lipSync) {

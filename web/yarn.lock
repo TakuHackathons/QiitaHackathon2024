@@ -34,6 +34,13 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.57.1.tgz#de633db3ec2ef6a3c89e2f19038063e8a122e2c2"
   integrity sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==
 
+"@gltf-transform/core@^4.0.8":
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/@gltf-transform/core/-/core-4.0.8.tgz#cf5699cb05e62a33bb68dbf9e1438186f992cac5"
+  integrity sha512-8oSLSw+t+wxPvKC2qm0n3EOoR6Ql2DMuagimjWjGz8sC4MtCqbo6kS6dCeissYrkgP2fj/k8dzRWiWQZRatGMg==
+  dependencies:
+    property-graph "^2.0.0"
+
 "@humanwhocodes/config-array@^0.13.0":
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.13.0.tgz#fb907624df3256d04b9aa2df50d7aa97ec648748"
@@ -2204,6 +2211,11 @@ prop-types@^15.8.1:
     loose-envify "^1.4.0"
     object-assign "^4.1.1"
     react-is "^16.13.1"
+
+property-graph@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/property-graph/-/property-graph-2.0.0.tgz#aaf79cdd5fd05171c1d34c41367acdaac3cbac61"
+  integrity sha512-peDswWfLn7Lx+iPIxefhEUbLC7cs1KbfyKqOl5C5TF5F6urnyAORxzQ7JY21yjRzH7CpLa6+d1G+BemBr/lKyw==
 
 proxy-from-env@^1.1.0:
   version "1.1.0"
