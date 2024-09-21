@@ -1,7 +1,9 @@
 import { buildUrl } from "../utils/buildUrl";
 import { Html, Head, Main, NextScript } from "next/document";
+import _ from 'lodash'
 
 export default function Document() {
+  const bgImageUrls = ["bgimages/ground_bg.jpg", "bgimages/store_bg.jpg", "bgimages/japanstyle_home_bg.jpg"];
   return (
     <Html lang="ja">
       <Head>
@@ -16,7 +18,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body style={{ backgroundImage: `url(${buildUrl("/bg-c.png")})` }}>
+      <body style={{ backgroundImage: `url(${buildUrl(_.sample(bgImageUrls))})` }}>
         <Main />
         <NextScript />
       </body>
