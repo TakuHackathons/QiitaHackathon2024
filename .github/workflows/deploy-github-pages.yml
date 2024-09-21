@@ -21,8 +21,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: yarn install
+      working-directory: ./web
       run: yarn install
-    - name: Register .env
+    - name: build html
       working-directory: ./web
       run: yarn run build
     - name: Deploy
