@@ -1,13 +1,13 @@
 'use client';
 
-//import { useContext } from 'react';
+import { useContext } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 import { VrmViewer } from '../compoments/vrmViewer';
-//import { ViewerContext } from '../features/vrmViewer/viewerContext';
+import { ViewerContext } from '../features/vrmViewer/viewerContext';
 
 export default function Home() {
-  //const { viewer } = useContext(ViewerContext);
+  const { viewer } = useContext(ViewerContext);
 
   const voiceVoxRootUrl = 'http://localhost:50021';
   const onTestClick = async () => {
@@ -26,16 +26,19 @@ export default function Home() {
     });
     console.log(responseAudio.data);
     const responseSynthesis = await axios.post(`${voiceVoxRootUrl}/synthesis`, responseAudio.data, {
-      responseType: 'blob',
+      responseType: 'arraybuffer',
       params: {
         speaker: speackerId,
       },
     });
+    viewer.model?.speak(responseSynthesis.data, 'neutral');
+    /*
     const audioBlob = responseSynthesis.data;
     const audioUrl = URL.createObjectURL(audioBlob);
     const audio = new Audio(audioUrl);
     audio.volume = 1;
     audio.play();
+    */
   };
 
   return (

@@ -15,7 +15,7 @@ export type Talk = {
   message: string;
 };
 
-type EmotionType = ['neutral', 'happy', 'angry', 'sad', 'relaxed'][number] & VRMExpressionPresetName;
+export type EmotionType = ['neutral', 'happy', 'angry', 'sad', 'relaxed'][number] & VRMExpressionPresetName;
 
 /**
  * 発話文と音声の感情と、モデルの感情表現がセットになった物
@@ -87,8 +87,8 @@ export class Model {
   /**
    * 音声を再生し、リップシンクを行う
    */
-  public async speak(buffer: ArrayBuffer, screenplay: Screenplay) {
-    this.emoteController?.playEmotion(screenplay.expression);
+  public async speak(buffer: ArrayBuffer, expression: EmotionType) {
+    this.emoteController?.playEmotion(expression);
     await new Promise((resolve) => {
       this._lipSync?.playFromArrayBuffer(buffer, () => {
         resolve(true);
