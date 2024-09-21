@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --config .prettierrc --write \"src/**/*.{ts,js,tsx,jsx}\"",
     "deploy": "gh-pages -d out -t true"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
     "gh-pages": "^6.1.1",
+    "prettier": "^3.3.3",
     "typescript": "^5"
   }
 }

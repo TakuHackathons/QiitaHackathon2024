@@ -1,19 +1,12 @@
-import * as THREE from "three";
-import { VRM, VRMLoaderPlugin, VRMUtils, VRMExpressionPresetName } from "@pixiv/three-vrm";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { VRMAnimation } from "../../lib/VRMAnimation/VRMAnimation";
-import { VRMLookAtSmootherLoaderPlugin } from "../../lib/VRMLookAtSmootherLoaderPlugin/VRMLookAtSmootherLoaderPlugin";
-import { LipSync } from "../lipSync/lipSync";
-import { EmoteController } from "../emoteController/emoteController";
+import * as THREE from 'three';
+import { VRM, VRMLoaderPlugin, VRMUtils, VRMExpressionPresetName } from '@pixiv/three-vrm';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { VRMAnimation } from '../../lib/VRMAnimation/VRMAnimation';
+import { VRMLookAtSmootherLoaderPlugin } from '../../lib/VRMLookAtSmootherLoaderPlugin/VRMLookAtSmootherLoaderPlugin';
+import { LipSync } from '../lipSync/lipSync';
+import { EmoteController } from '../emoteController/emoteController';
 
-const talkStyles = [
-  "talk",
-  "happy",
-  "sad",
-  "angry",
-  "fear",
-  "surprised",
-] as const;
+const talkStyles = ['talk', 'happy', 'sad', 'angry', 'fear', 'surprised'] as const;
 export type TalkStyle = (typeof talkStyles)[number];
 
 export type Talk = {
@@ -23,7 +16,7 @@ export type Talk = {
   message: string;
 };
 
-const emotions = ["neutral", "happy", "angry", "sad", "relaxed"] as const;
+const emotions = ['neutral', 'happy', 'angry', 'sad', 'relaxed'] as const;
 type EmotionType = (typeof emotions)[number] & VRMExpressionPresetName;
 
 /**
@@ -56,13 +49,13 @@ export class Model {
       (parser) =>
         new VRMLoaderPlugin(parser, {
           lookAtPlugin: new VRMLookAtSmootherLoaderPlugin(parser),
-        })
+        }),
     );
 
     const gltf = await loader.loadAsync(url);
 
     const vrm = (this.vrm = gltf.userData.vrm);
-    vrm.scene.name = "VRMRoot";
+    vrm.scene.name = 'VRMRoot';
 
     VRMUtils.rotateVRM0(vrm);
     this.mixer = new THREE.AnimationMixer(vrm.scene);
@@ -85,7 +78,7 @@ export class Model {
   public async loadAnimation(vrmAnimation: VRMAnimation): Promise<void> {
     const { vrm, mixer } = this;
     if (vrm == null || mixer == null) {
-      throw new Error("You have to load VRM first");
+      throw new Error('You have to load VRM first');
     }
 
     const clip = vrmAnimation.createAnimationClip(vrm);
@@ -108,7 +101,7 @@ export class Model {
   public update(delta: number): void {
     if (this._lipSync) {
       const { volume } = this._lipSync.update();
-      this.emoteController?.lipSync("aa", volume);
+      this.emoteController?.lipSync('aa', volume);
     }
 
     this.emoteController?.update(delta);

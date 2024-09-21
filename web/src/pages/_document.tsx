@@ -1,22 +1,15 @@
-import { buildUrl } from "../utils/buildUrl";
-import { Html, Head, Main, NextScript } from "next/document";
-import _ from 'lodash'
+import { buildUrl } from '../utils/buildUrl';
+import { Html, Head, Main, NextScript } from 'next/document';
+import _ from 'lodash';
 
 export default function Document() {
-  const bgImageUrls = ["bgimages/ground_bg.jpg", "bgimages/store_bg.jpg", "bgimages/japanstyle_home_bg.jpg"];
+  const bgImageUrls = ['bgimages/ground_bg.jpg', 'bgimages/store_bg.jpg', 'bgimages/japanstyle_home_bg.jpg'];
   return (
     <Html lang="ja">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin=""
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=M+PLUS+2&family=Montserrat&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link href="https://fonts.googleapis.com/css2?family=M+PLUS+2&family=Montserrat&display=swap" rel="stylesheet" />
       </Head>
       <body style={{ backgroundImage: `url(${buildUrl(_.sample(bgImageUrls))})` }}>
         <Main />
