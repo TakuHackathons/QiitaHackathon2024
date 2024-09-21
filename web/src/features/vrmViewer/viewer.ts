@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { Model } from "./model";
 import { loadVRMAnimation } from "../../lib/VRMAnimation/loadVRMAnimation";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { buildUrl } from "@/utils/buildUrl";
 
 /**
  * three.jsを使った3Dビューワー
@@ -55,7 +56,7 @@ export class Viewer {
 
       this._scene.add(this.model.vrm.scene);
 
-      const vrma = await loadVRMAnimation("/QiitaHackathon2024/idle_loop.vrma");
+      const vrma = await loadVRMAnimation(buildUrl("/idle_loop.vrma"));
       if (vrma) this.model.loadAnimation(vrma);
 
       // HACK: アニメーションの原点がずれているので再生後にカメラ位置を調整する

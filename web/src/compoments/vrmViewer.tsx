@@ -1,5 +1,6 @@
 import { useContext, useCallback } from "react";
 import { ViewerContext } from "../features/vrmViewer/viewerContext";
+import { buildUrl } from "@/utils/buildUrl";
 //import { buildUrl } from "@/utils/buildUrl";
 
 export function VrmViewer() {
@@ -10,7 +11,7 @@ export function VrmViewer() {
       if (canvas) {
         viewer.setup(canvas);
 //        viewer.loadVrm(buildUrl("/AvatarSample_B.vrm"));
-        viewer.loadVrm("/QiitaHackathon2024/Zundamon_VRM_10.vrm");
+        viewer.loadVrm(buildUrl("/Zundamon_VRM_10.vrm"));
 
         // Drag and DropでVRMを差し替え
         canvas.addEventListener("dragover", function (event) {

@@ -4,8 +4,8 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import axios from "axios"
 import _ from 'lodash';
-import { VrmViewer } from "./compoments/vrmViewer";
-import { ViewerContext } from "./features/vrmViewer/viewerContext";
+import { VrmViewer } from "../compoments/vrmViewer";
+import { ViewerContext } from "../features/vrmViewer/viewerContext";
 
 export default function Home() {
   const { viewer } = useContext(ViewerContext);
@@ -42,11 +42,9 @@ export default function Home() {
   }
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <VrmViewer />
-        <button onClick={onTestClick}>test</button>
-      </main>
+    <div className={"font-M_PLUS_2"}>
+      <VrmViewer />
+      <button onClick={onTestClick}>test</button>
     </div>
   );
 }
