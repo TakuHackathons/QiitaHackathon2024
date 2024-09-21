@@ -1,0 +1,33 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Deploy Github Pages
+jobs:
+  builddeploy:
+    name: Data Import and Export
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+    - uses: actions/checkout@v4
+    - name: setup ubuntu
+      run: |
+        sudo apt-get --quiet update --yes
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: yarn install
+      run: yarn install
+    - name: Register .env
+      working-directory: ./web
+      run: yarn run build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_branch: gh-pages
+        publish_dir: web/out
