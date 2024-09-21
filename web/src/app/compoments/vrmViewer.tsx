@@ -43,8 +43,15 @@ export function VrmViewer() {
   );
 
   return (
-    <div className={"absolute top-0 left-0 w-screen h-[100svh] -z-10"}>
-      <canvas ref={canvasRef} className={"h-full w-full"}></canvas>
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100vw',
+      height: '100svh',
+      zIndex: -10
+    }}>
+      <canvas ref={canvasRef} style={{height: '100%', width: '100%'}}></canvas>
     </div>
   );
 }
