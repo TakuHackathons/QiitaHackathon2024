@@ -1,10 +1,15 @@
 "use client";
 
+import { useCallback, useContext, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import axios from "axios"
 import _ from 'lodash';
+import { VrmViewer } from "./compoments/vrmViewer";
+import { ViewerContext } from "./features/vrmViewer/viewerContext";
 
 export default function Home() {
+  const { viewer } = useContext(ViewerContext);
+
   const voiceVoxRootUrl = "http://localhost:50021"
   const onTestClick = async () => {
     const targetSpeackerName = 'ずんだもん';
@@ -39,6 +44,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <VrmViewer />
         <button onClick={onTestClick}>test</button>
       </main>
     </div>
