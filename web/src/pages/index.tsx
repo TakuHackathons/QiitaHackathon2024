@@ -1,21 +1,20 @@
 'use client';
 
-import { useCallback, useContext, useEffect, useState } from 'react';
-import styles from './page.module.css';
+//import { useContext } from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 import { VrmViewer } from '../compoments/vrmViewer';
-import { ViewerContext } from '../features/vrmViewer/viewerContext';
+//import { ViewerContext } from '../features/vrmViewer/viewerContext';
 
 export default function Home() {
-  const { viewer } = useContext(ViewerContext);
+  //const { viewer } = useContext(ViewerContext);
 
   const voiceVoxRootUrl = 'http://localhost:50021';
   const onTestClick = async () => {
     const targetSpeackerName = 'ずんだもん';
     const speackersResponse = await axios.get(`${voiceVoxRootUrl}/speakers`);
     console.log(speackersResponse);
-    const targetSpeacker = speackersResponse.data.find((speacker) => speacker.name === targetSpeackerName);
+    const targetSpeacker = speackersResponse.data.find((speacker: any) => speacker.name === targetSpeackerName);
     const targetSpeackerStyle = _.sample(targetSpeacker.styles);
     const speackerId = targetSpeackerStyle.id;
     console.log(targetSpeacker);

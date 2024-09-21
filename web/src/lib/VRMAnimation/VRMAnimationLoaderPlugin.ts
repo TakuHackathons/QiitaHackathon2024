@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { GLTF, GLTFLoaderPlugin, GLTFParser } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTF, GLTFLoaderPlugin, GLTFParser } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { GLTF as GLTFSchema } from '@gltf-transform/core';
 import { VRMCVRMAnimation } from './VRMCVRMAnimation';
 import { VRMHumanBoneName, VRMHumanBoneParentMap } from '@pixiv/three-vrm';
@@ -69,7 +69,6 @@ export class VRMAnimationLoaderPlugin implements GLTFLoaderPlugin {
   private _createNodeMap(defExtension: VRMCVRMAnimation): VRMAnimationLoaderPluginNodeMap {
     const humanoidIndexToName: Map<number, VRMHumanBoneName> = new Map();
     const expressionsIndexToName: Map<number, string> = new Map();
-    let lookAtIndex: number | null;
 
     // humanoid
     const humanBones = defExtension.humanoid?.humanBones;
@@ -101,7 +100,7 @@ export class VRMAnimationLoaderPlugin implements GLTFLoaderPlugin {
     }
 
     // lookAt
-    lookAtIndex = defExtension.lookAt?.node ?? null;
+    const lookAtIndex = defExtension.lookAt?.node ?? null;
 
     return { humanoidIndexToName, expressionsIndexToName, lookAtIndex };
   }
@@ -179,7 +178,11 @@ export class VRMAnimationLoaderPlugin implements GLTFLoaderPlugin {
           _quatB.setFromRotationMatrix(parentWorldMatrix).normalize();
 
           const trackValues = arrayChunk(origTrack.values, 4).flatMap((q) =>
-            _quatC.fromArray(q).premultiply(_quatB).multiply(_quatA).toArray(),
+            _quatC
+              .fromArray(q as THREE.QuaternionTuple)
+              .premultiply(_quatB)
+              .multiply(_quatA)
+              .toArray(),
           );
 
           const track = origTrack.clone();
@@ -202,7 +205,7 @@ export class VRMAnimationLoaderPlugin implements GLTFLoaderPlugin {
             values[i] = origTrack.values[3 * i];
           }
 
-          const newTrack = new THREE.NumberKeyframeTrack(`${expressionName}.weight`, times as any, values as any);
+          const newTrack = new THREE.NumberKeyframeTrack(`${expressionName}.weight`, times, values);
           result.expressionTracks.set(expressionName, newTrack);
         } else {
           throw new Error(`Invalid path "${path}"`);

@@ -1,13 +1,12 @@
 import * as THREE from 'three';
 import { VRM, VRMLoaderPlugin, VRMUtils, VRMExpressionPresetName } from '@pixiv/three-vrm';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { VRMAnimation } from '../../lib/VRMAnimation/VRMAnimation';
 import { VRMLookAtSmootherLoaderPlugin } from '../../lib/VRMLookAtSmootherLoaderPlugin/VRMLookAtSmootherLoaderPlugin';
 import { LipSync } from '../lipSync/lipSync';
 import { EmoteController } from '../emoteController/emoteController';
 
-const talkStyles = ['talk', 'happy', 'sad', 'angry', 'fear', 'surprised'] as const;
-export type TalkStyle = (typeof talkStyles)[number];
+type TalkStyle = ['talk', 'happy', 'sad', 'angry', 'fear', 'surprised'][number];
 
 export type Talk = {
   style: TalkStyle;
@@ -16,8 +15,7 @@ export type Talk = {
   message: string;
 };
 
-const emotions = ['neutral', 'happy', 'angry', 'sad', 'relaxed'] as const;
-type EmotionType = (typeof emotions)[number] & VRMExpressionPresetName;
+type EmotionType = ['neutral', 'happy', 'angry', 'sad', 'relaxed'][number] & VRMExpressionPresetName;
 
 /**
  * 発話文と音声の感情と、モデルの感情表現がセットになった物
