@@ -10,7 +10,7 @@ export function VrmViewer() {
       if (canvas) {
         viewer.setup(canvas);
 //        viewer.loadVrm(buildUrl("/AvatarSample_B.vrm"));
-        viewer.loadVrm("/QiitaHackathon2024/AvatarSample_B.vrm");
+        viewer.loadVrm("/QiitaHackathon2024/Zundamon_VRM_10.vrm");
 
         // Drag and DropでVRMを差し替え
         canvas.addEventListener("dragover", function (event) {
