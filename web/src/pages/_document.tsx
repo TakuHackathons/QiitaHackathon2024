@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 import _ from 'lodash';
 
 export default function Document() {
-  const bgImageUrls = ['bgimages/ground_bg.jpg', 'bgimages/store_bg.jpg', 'bgimages/japanstyle_home_bg.jpg'];
+  const bgImageUrls = ['/bgimages/ground_bg.jpg', '/bgimages/store_bg.jpg', '/bgimages/japanstyle_home_bg.jpg'];
   return (
     <Html lang="ja">
       <Head>
