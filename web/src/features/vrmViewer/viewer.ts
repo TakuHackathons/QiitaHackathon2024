@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { Model } from './model';
 import { loadVRMAnimation } from '../../lib/VRMAnimation/loadVRMAnimation';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { buildUrl } from '@/utils/buildUrl';
 
 /**
@@ -86,7 +86,7 @@ export class Viewer {
       alpha: true,
       antialias: true,
     });
-    this._renderer.outputEncoding = THREE.sRGBEncoding;
+    this._renderer.outputColorSpace = THREE.SRGBColorSpace;
     this._renderer.setSize(width, height);
     this._renderer.setPixelRatio(window.devicePixelRatio);
 

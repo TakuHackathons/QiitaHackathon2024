@@ -11,7 +11,7 @@ export default function Document() {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=M+PLUS+2&family=Montserrat&display=swap" rel="stylesheet" />
       </Head>
-      <body style={{ backgroundImage: `url(${buildUrl(_.sample(bgImageUrls))})` }}>
+      <body style={{ backgroundImage: `url(${buildUrl(_.sample(bgImageUrls) || '')})` }}>
         <Main />
         <NextScript />
       </body>
