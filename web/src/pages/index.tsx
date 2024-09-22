@@ -2,7 +2,6 @@
 
 import { useContext } from 'react';
 import axios from 'axios';
-import _ from 'lodash';
 import { VrmViewer } from '../compoments/vrmViewer';
 import { ViewerContext } from '../features/vrmViewer/viewerContext';
 
@@ -15,7 +14,6 @@ export default function Home() {
     const speackersResponse = await axios.get(`${voiceVoxRootUrl}/speakers`);
     console.log(speackersResponse);
     const targetSpeacker = speackersResponse.data.find((speacker: any) => speacker.name === targetSpeackerName);
-    //const targetSpeackerStyle = _.sample(targetSpeacker.styles);
     // 'ノーマル', 'あまあま', 'ツンツン', 'セクシー', 'ささやき', 'ヒソヒソ' がある
     const targetSpeackerStyle = targetSpeacker.styles.find((style: any) => style.name === 'あまあま')
     const speackerId = targetSpeackerStyle.id;
