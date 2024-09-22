@@ -40,24 +40,49 @@ export default function Home() {
   return (
     <div className={'font-M_PLUS_2'}>
       <VrmViewer />
-      <div className="absolute bottom-0 z-20 w-screen">
-        <div className="bg-base text-black">
-          <div className="mx-auto max-w-4xl p-16">
-            <div className="grid grid-flow-col gap-[8px] grid-cols-[min-content_1fr_min-content]">
+      <div style={{ position: 'absolute', bottom: 0, zIndex: 20, width: '100vw' }}>
+        <div style={{ backgroundColor: 'rgb(251,226,202)', color: '#000000' }}>
+          <div style={{ marginLeft: 'auto', marginRight: 'auto', maxWidth: '56rem', padding: '16px' }}>
+            <div style={{ display: 'grid', gridAutoFlow: 'column', gap: '8px', gridTemplateColumns: 'min-content 1fr min-content' }}>
+              <IconButton
+                iconName="24/Microphone"
+                style={{
+                  backgroundColor: 'rgb(255,97,127)',
+                }}
+                className="bg-secondary hover:bg-secondary-hover active:bg-secondary-press disabled:bg-secondary-disabled"
+                isProcessing={false}
+                disabled={false}
+                onClick={onTestClick}
+              />
+
               <input
                 type="text"
                 placeholder="聞きたいことをいれてね"
                 onChange={(e) => setUserMessage(e.target.value)}
                 disabled={false}
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  color: 'rgb(81,64,98)',
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  fontWeight: 700,
+                  paddingLeft: '16px',
+                  paddingRight: '16px',
+                  borderRadius: '16px',
+                  width: '100%',
+                }}
                 className="bg-surface1 hover:bg-surface1-hover focus:bg-surface1 disabled:bg-surface1-disabled disabled:text-primary-disabled rounded-16 w-full px-16 text-text-primary typography-16 font-bold disabled"
                 value={userMessage}
               ></input>
 
               <IconButton
                 iconName="24/Send"
+                style={{
+                  backgroundColor: 'rgb(255,97,127)',
+                }}
                 className="bg-secondary hover:bg-secondary-hover active:bg-secondary-press disabled:bg-secondary-disabled"
                 isProcessing={false}
-                disabled={false}
+                disabled={userMessage.length <= 0}
                 onClick={onTestClick}
               />
             </div>
