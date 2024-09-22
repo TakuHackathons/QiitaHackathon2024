@@ -9,13 +9,15 @@ import { ViewerContext } from '../features/vrmViewer/viewerContext';
 export default function Home() {
   const { viewer } = useContext(ViewerContext);
 
-  const voiceVoxRootUrl = 'http://localhost:50021';
+  const voiceVoxRootUrl = process.env.NEXT_PUBLIC_VOICEVOX_API_ROOT_URL;
   const onTestClick = async () => {
     const targetSpeackerName = 'ずんだもん';
     const speackersResponse = await axios.get(`${voiceVoxRootUrl}/speakers`);
     console.log(speackersResponse);
     const targetSpeacker = speackersResponse.data.find((speacker: any) => speacker.name === targetSpeackerName);
-    const targetSpeackerStyle = _.sample(targetSpeacker.styles);
+    //const targetSpeackerStyle = _.sample(targetSpeacker.styles);
+    // 'ノーマル', 'あまあま', 'ツンツン', 'セクシー', 'ささやき', 'ヒソヒソ' がある
+    const targetSpeackerStyle = targetSpeacker.styles.find((style: any) => style.name === 'あまあま')
     const speackerId = targetSpeackerStyle.id;
     console.log(targetSpeacker);
     const responseAudio = await axios.post(`${voiceVoxRootUrl}/audio_query`, null, {
