@@ -2,6 +2,20 @@
 # yarn lockfile v1
 
 
+"@charcoal-ui/icon-files@^3.15.0":
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/@charcoal-ui/icon-files/-/icon-files-3.15.0.tgz#bdec69372302f8c4e61e36c4ec6dd961854153e6"
+  integrity sha512-Ysx6JEMQ7hw0N0LGXNjKHBAfMkesLwFeoX11gh8T95yNmsr71WsM0QDua174HbllRLocofAaCofPRlKNy87SSA==
+
+"@charcoal-ui/icons@^3.15.0":
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/@charcoal-ui/icons/-/icons-3.15.0.tgz#3ab993a136c4db31333634970db67bd66a57f9cd"
+  integrity sha512-buw4vY7Nv1iQ95rtlNk719mKhjOvVgyVfaykSaaa/BTTAWjPQUEUMMdeMK5tBr8sI0vxk9nMvNOy8jsIoMCI8g==
+  dependencies:
+    "@charcoal-ui/icon-files" "^3.15.0"
+    dompurify "^2.3.6"
+    warning "^4.0.3"
+
 "@eslint-community/eslint-utils@^4.2.0", "@eslint-community/eslint-utils@^4.4.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -855,6 +869,11 @@ doctrine@^3.0.0:
   integrity sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==
   dependencies:
     esutils "^2.0.2"
+
+dompurify@^2.3.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.5.6.tgz#8402b501611eaa7fb3786072297fcbe2787f8592"
+  integrity sha512-zUTaUBO8pY4+iJMPE1B9XlO2tXVYIcEA4SNGtvDELzTSCQO7RzH+j7S180BmhmJId78lqGU2z19vgVx2Sxs/PQ==
 
 eastasianwidth@^0.2.0:
   version "0.2.0"
@@ -1929,7 +1948,7 @@ lodash@^4.17.21:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
-loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -2743,6 +2762,13 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+warning@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+  dependencies:
+    loose-envify "^1.0.0"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"

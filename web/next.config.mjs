@@ -2,7 +2,7 @@
 const nextConfig = {
   output: "export",
   // for Github Pages
-  reactStrictMode: true,
+  reactStrictMode: false,
   assetPrefix: process.env.BASE_PATH || "",
   basePath: process.env.BASE_PATH || "",
   trailingSlash: true,
