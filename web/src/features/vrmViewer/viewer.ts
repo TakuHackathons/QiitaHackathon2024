@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import { DirectionalLight, WebGLRenderer, Clock, PerspectiveCamera, Scene, AmbientLight, Object3D, Vector3, SRGBColorSpace } from 'three';
 import { Model } from './model';
 import { loadVRMAnimation } from '../../lib/VRMAnimation/loadVRMAnimation';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -13,29 +13,29 @@ export class Viewer {
   public isReady: boolean;
   public model?: Model;
 
-  private _renderer?: THREE.WebGLRenderer;
-  private _clock: THREE.Clock;
-  private _scene: THREE.Scene;
-  private _camera?: THREE.PerspectiveCamera;
+  private _renderer?: WebGLRenderer;
+  private _clock: Clock;
+  private _scene: Scene;
+  private _camera?: PerspectiveCamera;
   private _cameraControls?: OrbitControls;
 
   constructor() {
     this.isReady = false;
 
     // scene
-    const scene = new THREE.Scene();
+    const scene = new Scene();
     this._scene = scene;
 
     // light
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    const directionalLight = new DirectionalLight(0xffffff, 1);
     directionalLight.position.set(1.0, 1.0, 1.0).normalize();
     scene.add(directionalLight);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const ambientLight = new AmbientLight(0xffffff, 1);
     scene.add(ambientLight);
 
     // animate
-    this._clock = new THREE.Clock();
+    this._clock = new Clock();
     this._clock.start();
   }
 
@@ -45,7 +45,7 @@ export class Viewer {
     }
 
     // gltf and vrm
-    this.model = new Model(this._camera || new THREE.Object3D());
+    this.model = new Model(this._camera || new Object3D());
     this.model.loadVRM(url).then(async () => {
       if (!this.model?.vrm) return;
 
@@ -81,17 +81,17 @@ export class Viewer {
     const width = parentElement?.clientWidth || canvas.width;
     const height = parentElement?.clientHeight || canvas.height;
     // renderer
-    this._renderer = new THREE.WebGLRenderer({
+    this._renderer = new WebGLRenderer({
       canvas: canvas,
       alpha: true,
       antialias: true,
     });
-    this._renderer.outputColorSpace = THREE.SRGBColorSpace;
+    this._renderer.outputColorSpace = SRGBColorSpace;
     this._renderer.setSize(width, height);
     this._renderer.setPixelRatio(window.devicePixelRatio);
 
     // camera
-    this._camera = new THREE.PerspectiveCamera(20.0, width / height, 0.1, 20.0);
+    this._camera = new PerspectiveCamera(20.0, width / height, 0.1, 20.0);
     this._camera.position.set(0, 1.3, 1.5);
     this._cameraControls?.target.set(0, 1.3, 0);
     this._cameraControls?.update();
@@ -131,7 +131,7 @@ export class Viewer {
     const headNode = this.model?.vrm?.humanoid.getNormalizedBoneNode('head');
 
     if (headNode) {
-      const headWPos = headNode.getWorldPosition(new THREE.Vector3());
+      const headWPos = headNode.getWorldPosition(new Vector3());
       this._camera?.position.set(this._camera.position.x, headWPos.y, this._camera.position.z);
       this._cameraControls?.target.set(headWPos.x, headWPos.y, headWPos.z);
       this._cameraControls?.update();

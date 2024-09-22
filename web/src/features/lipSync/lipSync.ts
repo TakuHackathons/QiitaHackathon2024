@@ -1,4 +1,6 @@
-import { LipSyncAnalyzeResult } from './lipSyncAnalyzeResult';
+interface LipSyncAnalyzeResult {
+  volume: number;
+}
 
 const TIME_DOMAIN_DATA_LENGTH = 2048;
 

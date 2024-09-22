@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import { Object3D } from 'three';
 import { VRM, VRMExpressionPresetName } from '@pixiv/three-vrm';
 import { ExpressionController } from './expressionController';
 
@@ -9,7 +9,7 @@ import { ExpressionController } from './expressionController';
 export class EmoteController {
   private _expressionController: ExpressionController;
 
-  constructor(vrm: VRM, camera: THREE.Object3D) {
+  constructor(vrm: VRM, camera: Object3D) {
     this._expressionController = new ExpressionController(vrm, camera);
   }
 

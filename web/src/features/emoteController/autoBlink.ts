@@ -1,5 +1,9 @@
 import { VRMExpressionManager } from '@pixiv/three-vrm';
-import { BLINK_CLOSE_MAX, BLINK_OPEN_MAX } from './emoteConstants';
+
+// 瞬きで目を閉じている時間(sec)
+const BLINK_CLOSE_MAX = 0.12;
+// 瞬きで目を開いている時間(sec)
+const BLINK_OPEN_MAX = 5;
 
 /**
  * 自動瞬きを制御するクラス

@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import { AnimationMixer, Object3D } from 'three';
 import { VRM, VRMLoaderPlugin, VRMUtils, VRMExpressionPresetName } from '@pixiv/three-vrm';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { VRMAnimation } from '../../lib/VRMAnimation/VRMAnimation';
@@ -30,13 +30,13 @@ export type Screenplay = {
  */
 export class Model {
   public vrm?: VRM | null;
-  public mixer?: THREE.AnimationMixer;
+  public mixer?: AnimationMixer;
   public emoteController?: EmoteController;
 
-  private _lookAtTargetParent: THREE.Object3D;
+  private _lookAtTargetParent: Object3D;
   private _lipSync?: LipSync;
 
-  constructor(lookAtTargetParent: THREE.Object3D) {
+  constructor(lookAtTargetParent: Object3D) {
     this._lookAtTargetParent = lookAtTargetParent;
     this._lipSync = new LipSync(new AudioContext());
   }
@@ -56,7 +56,7 @@ export class Model {
     vrm.scene.name = 'VRMRoot';
 
     VRMUtils.rotateVRM0(vrm);
-    this.mixer = new THREE.AnimationMixer(vrm.scene);
+    this.mixer = new AnimationMixer(vrm.scene);
 
     this.emoteController = new EmoteController(vrm, this._lookAtTargetParent);
   }

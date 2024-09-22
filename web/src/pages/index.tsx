@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { VrmViewer } from '../compoments/vrmViewer';
 import { ViewerContext } from '../features/vrmViewer/viewerContext';
 import { IconButton } from '../compoments/iconButton';
@@ -9,32 +9,9 @@ import { speakCharacter } from '../features/speak-character';
 export default function Home() {
   const { viewer } = useContext(ViewerContext);
   const [userMessage, setUserMessage] = useState('');
-  let counter = 0;
-  let tiredCount = 0;
-
-  useEffect(() => {
-    (async () => {
-      await speakCharacter('ずんだもんだよ〜', viewer);
-      const intervalId = setInterval(() => {
-        if (!userMessage) {
-          counter++;
-          speakCharacter('何か話しかけてね', viewer);
-        }
-        if (counter > 3) {
-          clearInterval(intervalId);
-        }
-      }, 10000);
-    })();
-  }, []);
 
   const onTestClick = async () => {
-    tiredCount++;
-    if (tiredCount <= 3) {
-      await speakCharacter(userMessage, viewer);
-    }
-    if (tiredCount > 3) {
-      await speakCharacter('お腹すいたーご飯食べたい', viewer);
-    }
+    await speakCharacter(userMessage, viewer);
   };
 
   return (

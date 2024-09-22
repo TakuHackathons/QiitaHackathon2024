@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import { Object3D } from 'three';
 import { VRM, VRMExpressionManager, VRMExpressionPresetName } from '@pixiv/three-vrm';
 import { AutoLookAt } from './autoLookAt';
 import { AutoBlink } from './autoBlink';
@@ -18,7 +18,7 @@ export class ExpressionController {
     preset: VRMExpressionPresetName;
     value: number;
   } | null;
-  constructor(vrm: VRM, camera: THREE.Object3D) {
+  constructor(vrm: VRM, camera: Object3D) {
     this._autoLookAt = new AutoLookAt(vrm, camera);
     this._currentEmotion = 'neutral';
     this._currentLipSync = null;
